@@ -1,7 +1,5 @@
 # -*- coding:utf-8 -*-
 
-__author__ = 'wenbin'
-
 import paho.mqtt.client as mqtt
 import time
 
