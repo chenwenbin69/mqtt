@@ -12,6 +12,7 @@ sys.setdefaultencoding('utf8')
 host = '127.0.0.1'
 port = '1883'
 topic = 'test'
+payload = 'hello'
 qos = 0
 
 # # 连接mqtt服务器
@@ -35,6 +36,7 @@ def main():
     client.on_disconnect = on_disconnect  # 设置client失去连接回调函数
     client.connect(host, port, 60)  # 连接mqtt服务器
     client.subscribe(topic, qos)  # 订阅主题
+
     for i in range(1, 10):
         print i
         client.publish(topic, i, 0)  # 发布主题
