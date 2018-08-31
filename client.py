@@ -33,8 +33,8 @@ def test():
     
     i = 0 
     while i <10 :
+        i += 1
         content = str(datetime.datetime.now())
-        print '这是第%s条消息'%content
         client.publish(topic, payload=content, qos=0)
         sleep(0.1)
         
