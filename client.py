@@ -10,7 +10,6 @@ sys.setdefaultencoding('utf8')
 host = '127.0.0.1'
 port = '1883'
 topic = 'test'
-msg = str(datetime.datetime.now())
 
 def on_msg_come(client,userdata,msg):
     print msg.topic + ":" + msg.payload
@@ -23,6 +22,7 @@ def on_disconnect(client, userdata, rc):
         print 'Unexpected disconnection :'  + str(rc)
 
 def test():
+    msg = str(datetime.datetime.now())
     client = mqtt.Client()
     client.on_connect = on_connect  # 设置连接上服务器回调函数
     client.on_message = on_msg_come  # 设置接收到消息回调函数
