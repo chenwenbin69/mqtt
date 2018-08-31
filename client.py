@@ -19,7 +19,7 @@ def on_connect(client, userdata, flags, rc):
 
 def on_disconnect(client, userdata, rc):
     if rc != 0:
-        print 'Unexpected disconnection :'  + str(rc)
+        print 'error code :'  + str(rc)
 
 def test():
     msg = str(datetime.datetime.now())
@@ -29,7 +29,13 @@ def test():
     client.on_disconnect = on_disconnect  # 设置client失去连接回调函数
     client.connect(host, port, 60)
     client.subscribe(topic, qos=0)
-    client.publish(topic, payload=msg, qos=0)
+    
+    i = 0 
+    while i <10 :
+        content = str(datetime.datetime.now())
+        print '这是第%s条消息'%content
+        client.publish(topic, payload=content, qos=0)
+        
     client.loop_forever()
 
 if __name__ == "__main__":
