@@ -2,6 +2,7 @@
 
 import paho.mqtt.client as mqtt
 import datetime
+from time import sleep
 
 import sys
 reload(sys)
@@ -20,9 +21,9 @@ def on_connect(client, userdata, flags, rc):
 def on_disconnect(client, userdata, rc):
     if rc != 0:
         print 'error code :'  + str(rc)
-
+        
+# 测试方法
 def test():
-    msg = str(datetime.datetime.now())
     client = mqtt.Client()
     client.on_connect = on_connect  # 设置连接上服务器回调函数
     client.on_message = on_msg_come  # 设置接收到消息回调函数
@@ -35,6 +36,7 @@ def test():
         content = str(datetime.datetime.now())
         print '这是第%s条消息'%content
         client.publish(topic, payload=content, qos=0)
+        sleep(0.1)
         
     client.loop_forever()
 
